@@ -37,7 +37,7 @@ public class TaskController {
     }
 
     @PutMapping(value = "updateTask",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public TaskDto updateTask(TaskDto taskDto) {
+    public TaskDto updateTask(@RequestBody TaskDto taskDto) {
         Task task = taskMapper.mapToTask(taskDto);
         System.out.println(task);
         Task savedTask = service.saveTask(task);
