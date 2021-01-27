@@ -33,7 +33,7 @@ public class TrelloClient {
     @Value("${trello.app.username}")
     private String trelloAppUsername;
 
-    public void getUrlTrelloBoard() {
+    public List<TrelloBoardDto> getUrlTrelloBoard() {
         URI url = UriComponentsBuilder.fromHttpUrl(trelloApiEndpoint)
                 .path("/members/")
                 .pathSegment(trelloAppUsername)
@@ -48,7 +48,7 @@ public class TrelloClient {
 
         TrelloBoardDto[] boardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
 
-        trelloBoard = Optional.ofNullable(boardsResponse)
+        return Optional.ofNullable(boardsResponse)
                 .map(Arrays::asList)
                 .orElse(Collections.emptyList());
     }
