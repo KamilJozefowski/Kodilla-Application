@@ -2,13 +2,12 @@ package com.crud.tasks.repository;
 
 import com.crud.tasks.domain.Task;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.Optional;
 
 
-@Repository
-public interface TaskRepository extends CrudRepository<Task, Long>{
+public interface TaskRepository extends CrudRepository<Task, Long> {
     @Override
     List<Task> findAll();
 
@@ -16,6 +15,12 @@ public interface TaskRepository extends CrudRepository<Task, Long>{
     Task save(Task task);
 
     @Override
-    Optional<Task> findById(final Long id);
+    Optional<Task> findById(Long id);
+
+    @Override
+    void delete(Task task);
+
+    @Override
+    long count();
 
 }
